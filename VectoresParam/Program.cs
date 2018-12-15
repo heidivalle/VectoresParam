@@ -25,19 +25,21 @@ namespace VectoresParam
             else
                 Console.WriteLine("\n15 NO EXISTE ");
             Console.ReadKey();
-            //trabajo con el vector de cadenas de caracter
-            Console.WriteLine("\n ingrese los nombres");
-            leerNombres(nombres);
-            imprimirNombres(nombres);
+          
             if (buscar(x, 25))
                 Console.WriteLine("\n25 encontrado");
             else
                 Console.WriteLine("\n25 NO EXISTE ");
             Console.ReadKey();
 
+            Console.Clear();
 
-
-
+            //trabajo con el vector de cadenas de caracter
+            Console.WriteLine("\n ingrese los nombres");
+            leerNombres(nombres);
+            imprimirNombres(nombres);
+            ordenarNombres(nombres);
+            Console.ReadKey();
 
         }
         public static void leer(int[] x)
@@ -122,6 +124,21 @@ namespace VectoresParam
             {
                 Console.WriteLine("\nlememto {0}", num);
             }
+        }
+
+        public static void ordenarNombres(string[] x)
+        {
+            string aux = "";
+            for (int i = 0; i < x.Length; i++)
+                for (int k = i + 1; k < x.Length; k++)
+                    if (String.Compare(x[i], x[k], StringComparison.Ordinal) > 0)
+                    { 
+                        aux = x[i];
+                        x[i] = x[k];
+                        x[k] = aux;
+                    }
+
+
         }
     }
    
