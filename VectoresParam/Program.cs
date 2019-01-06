@@ -8,9 +8,17 @@ namespace VectoresParam
 {
     class Program
     {
+        private int[,] mat;
+
         const int MAX = 10;
         static void Main(string[] args)
         {
+
+            Program ma = new Program();
+            ma.Cargar();
+            ma.Imprimir();
+            Console.ReadKey();
+
             int[] x = new int[MAX];
             string[] nombres = new string[MAX];
 
@@ -42,6 +50,76 @@ namespace VectoresParam
             Console.ReadKey();
 
         }
+
+
+        public void Cargar()
+        {
+            Console.Write("Cuantas fila tiene la matriz:");
+            string linea;
+            linea = Console.ReadLine();
+            int filas = int.Parse(linea);
+            Console.Write("Cuantas columnas tiene la matriz:");
+            linea = Console.ReadLine();
+            int columnas = int.Parse(linea);
+            mat = new int[filas, columnas];
+            for (int f = 0; f < mat.GetLength(0); f++)
+            {
+                for (int c = 0; c < mat.GetLength(1); c++)
+                {
+                    Console.Write("Ingrese componente:");
+                    linea = Console.ReadLine();
+                    mat[f, c] = int.Parse(linea);
+                }
+            }
+        }
+
+        public void Imprimir()
+        {
+            for (int f = 0; f < mat.GetLength(0); f++)
+            {
+                for (int c = 0; c < mat.GetLength(1); c++)
+                {
+                    Console.Write(mat[f, c] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public static void leer(int[] x)
         {
             for (int i = 0; i < MAX; i++)
