@@ -2,224 +2,74 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace VectoresParam
+namespace PruebaVector
 {
-    class Program
+    class PruebaVector
     {
-        private int[,] mat;
-
-        const int MAX = 10;
-        static void Main(string[] args)
-        {
-
-            Program ma = new Program();
-            ma.Cargar();
-            ma.Imprimir();
-            Console.ReadKey();
-
-            int[] x = new int[MAX];
-            string[] nombres = new string[MAX];
-
-            leer(x);
-            imprimir(x);
-            
-            ordenar(x);
-            Console.WriteLine("vector ordenar");
-            imprimir(x);
-            if (buscar(x, 15))
-                Console.WriteLine("\n15 encontrado");
-            else
-                Console.WriteLine("\n15 NO EXISTE ");
-            Console.ReadKey();
-          
-            if (buscar(x, 25))
-                Console.WriteLine("\n25 encontrado");
-            else
-                Console.WriteLine("\n25 NO EXISTE ");
-            Console.ReadKey();
-
-            Console.Clear();
-
-            //trabajo con el vector de cadenas de caracter
-            Console.WriteLine("\n ingrese los nombres");
-            leerNombres(nombres);
-            imprimirNombres(nombres);
-            ordenarNombres(nombres);
-            Console.ReadKey();
-
-        }
-
+        private int[,] MatrizA;
+        private int[,] MatrizB;
+        private int[,] MatrizC;
 
         public void Cargar()
         {
-            Console.Write("Cuantas fila tiene la matriz:");
-            string linea;
-            linea = Console.ReadLine();
-            int filas = int.Parse(linea);
-            Console.Write("Cuantas columnas tiene la matriz:");
-            linea = Console.ReadLine();
-            int columnas = int.Parse(linea);
-            mat = new int[filas, columnas];
-            for (int f = 0; f < mat.GetLength(0); f++)
+            MatrizA = new int[10, 10];
+            MatrizB = new int[10, 10];
+            MatrizC = new int[10, 10];
+
+            Console.WriteLine("Ingresando datos al matriz A");
+            for (int i = 1; i <= 3; i++)
             {
-                for (int c = 0; c < mat.GetLength(1); c++)
+                for (int j = 1; j <= 3; j++)
                 {
-                    Console.Write("Ingrese componente:");
+                    Console.Write("Ingrese posicion [" + i + "," + j + "]: ");
+                    string linea;
                     linea = Console.ReadLine();
-                    mat[f, c] = int.Parse(linea);
+                    MatrizA[i, j] = int.Parse(linea);
                 }
             }
-        }
 
-        public void Imprimir()
-        {
-            for (int f = 0; f < mat.GetLength(0); f++)
+            Console.WriteLine("Ingresando datos al matriz B");
+            for (int i = 1; i <= 3; i++)
             {
-                for (int c = 0; c < mat.GetLength(1); c++)
+                for (int j = 1; j <= 3; j++)
                 {
-                    Console.Write(mat[f, c] + " ");
+                    Console.Write("Ingrese posicion [" + i + "," + j + "]: ");
+                    string linea;
+                    linea = Console.ReadLine();
+                    MatrizB[i, j] = int.Parse(linea);
                 }
-                Console.WriteLine();
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public static void leer(int[] x)
-        {
-            for (int i = 0; i < MAX; i++)
-            {
-                Console.WriteLine("\nIngresa del elemento {0}", i + 1);
-                x[i] = Int32.Parse(Console.ReadLine());
-
-
             }
 
 
-
-        }
-
-        //Agregar el metodo que recibe como parametro un entero y devuelve (V) y si estae entero existe en el vector; devuelve (f) si no existe //
-        public static void imprimir(int[] x)
-        {
-            foreach (int num in x)
+            for (int i = 1; i <= 3; i++)
             {
-                Console.WriteLine("\nlememto {0}", num);
-            }
-        }
-
-        public static bool buscar(int[] x, int y)
-        {
-            bool encontrado = false;
-            foreach (int num in x)
-            {
-                if (num == y)
+                for (int j = 1; j <= 3; j++)
                 {
-                    encontrado = true;
-                    break;
+                    MatrizC[i, j] = MatrizA[i, j] * MatrizB[i, j];
                 }
             }
-            return encontrado;
-
         }
-        public static bool buscar2(int[] x, int y)
+
+        public void visualizar()
         {
-               bool encontrado = false;
-                int i = 0;
-                while (i < MAX && encontrado == false)
-                { 
-                    if (x[i] == y)
-                        encontrado = true;
-                    i++;
+            Console.WriteLine("La suma de la MatrizA y MatrizB es :");
+            for (int i = 1; i <= 3; i++)
+            {
+                Console.Write("\n");
+                for (int j = 1; j <= 3; j++)
+                {
+                    Console.Write(MatrizC[i, j] + "  ");
                 }
-                return encontrado;                                 
-           
-
-        }
-        //CLASE//
-        public static void ordenar(int[]x )
-        {
-            int aux = 0;
-            for (int i = 0; i <x.Length; i++)
-                for (int j = i + 1; j < (x.Length); j++)
-                    if (x[i] > x[j]) 
-                    {//Ingrese el elmento
-                        aux = x[i];
-                        x[i]= x[j];
-                        x[j] = aux;
-                    }
-        }
-
-        public static void leerNombres(string[] x)
-        {
-            for (int i = 0; i < MAX; i++)
-            {
-                Console.WriteLine("\nIngresa del elemento {0}", i + 1);
-                x[i] = (Console.ReadLine());
-
-
             }
-
-        }
-        public static void imprimirNombres(string[] x)
-        {
-            foreach (string  num in x)
-            {
-                Console.WriteLine("\nlememto {0}", num);
-            }
+            Console.ReadKey();
         }
 
-        public static void ordenarNombres(string[] x)
+        static void Main(string[] args)
         {
-            string aux = "";
-            for (int i = 0; i < x.Length; i++)
-                for (int k = i + 1; k < x.Length; k++)
-                    if (String.Compare(x[i], x[k], StringComparison.Ordinal) > 0)
-                    { 
-                        aux = x[i];
-                        x[i] = x[k];
-                        x[k] = aux;
-                    }
-
-
+            PruebaVector pv = new PruebaVector();
+            pv.Cargar();
+            pv.visualizar();
         }
     }
-   
 }
-
-
